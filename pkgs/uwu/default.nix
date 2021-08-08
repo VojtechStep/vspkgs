@@ -1,4 +1,4 @@
-{ stdenv, fetchFromGitHub }:
+{ lib, stdenv, fetchFromGitHub }:
 
 let
   name = "uwu";
@@ -16,4 +16,10 @@ in stdenv.mkDerivation {
     mkdir -p $out/bin
     install -Dm755 uwu $out/bin
   '';
+
+  meta = {
+    description = "Obfuscated C uwu";
+    # Based on the PKGBUILD file included in the project's repo
+    license = lib.licenses.gpl2Plus;
+  };
 }
