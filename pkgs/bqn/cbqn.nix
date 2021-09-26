@@ -1,4 +1,4 @@
-{ lib, stdenv, fetchFromGitHub, bqn, bqnRuntimeSrc }:
+{ lib, stdenv, fetchFromGitHub, bqn, bqnRuntimeSrc, bash }:
 
 let
   name = "cbqn";
@@ -24,7 +24,7 @@ stdenv.mkDerivation {
     in
     ''
       ${bqn}/bin/bqn ./genRuntime ${bqnRuntimeSrc}
-      make CC=${CC}
+      make SHELL=${bash}/bin/bash CC=${CC}
     '';
   installPhase = ''
     mkdir -p $out/bin
