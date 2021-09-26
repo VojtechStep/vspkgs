@@ -23,10 +23,7 @@ stdenv.mkDerivation {
         else abort "Unsupported compiler: ${stdenv.cc}";
     in
     ''
-      patchShebangs --host ./genRuntime
-      head ./genRuntime -n1
-      echo "${bqnRuntimeSrc}"
-      ./genRuntime ${bqnRuntimeSrc}
+      ${bqn}/bin/bqn ./genRuntime ${bqnRuntimeSrc}
       make CC=${CC}
     '';
   installPhase = ''
