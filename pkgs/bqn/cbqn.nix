@@ -24,6 +24,8 @@ stdenv.mkDerivation {
     in
     ''
       patchShebangs --host ./genRuntime
+      head ./genRuntime -1
+      echo "${bqnRuntimeSrc}"
       ./genRuntime ${bqnRuntimeSrc}
       make CC=${CC}
     '';
